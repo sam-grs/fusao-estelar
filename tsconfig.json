@@ -12,15 +12,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"]
+      "lib/*": ["lib/*"],
+      "app/*": ["app/*"],
+      "styles/*": ["styles/*"],
+      "props/*": ["props/*"],
+      "routes/*": ["routes/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".eslintrc.js",
+    "jest.config.js"
+  ],
   "exclude": ["node_modules"]
 }
