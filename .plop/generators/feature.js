@@ -14,11 +14,11 @@ module.exports = function (plop) {
                 path: '../src/features/{{ camelCase name }}/{{ pascalCase name }}.tsx',
                 templateFile: 'templates/features/feature.hbs',
             },
-            {
-                type: 'add',
-                path: '../src/features/{{ camelCase name }}/{{ pascalCase name }}.styles.ts',
-                templateFile: 'templates/features/styles.hbs',
-            },
+            // {
+            //     type: 'add',
+            //     path: '../src/features/{{ camelCase name }}/{{ pascalCase name }}.styles.ts',
+            //     templateFile: 'templates/features/styles.hbs',
+            // },
             {
                 type: 'add',
                 path: '../src/features/{{ camelCase name }}/__stories__/{{ pascalCase name }}.stories.tsx',
