@@ -31,7 +31,7 @@ module.exports = function (plop) {
             },
             {
                 type: 'add',
-                path: '../app/{{ camelCase name }}/{{ kebabCase name }}.tsx',
+                path: '../src/app/{{ camelCase name }}/{{ kebabCase name }}.tsx',
                 templateFile: 'templates/features/pages.hbs',
             },
         ],

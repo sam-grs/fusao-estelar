@@ -15,12 +15,14 @@
         "plugins": [{ "name": "next" }],
         "baseUrl": "src",
         "paths": {
-            "lib/*": ["lib/*"],
             "app/*": ["app/*"],
-            "providers/*": ["providers/*"],
-            "styles/*": ["styles/*"],
-            "props/*": ["props/*"],
-            "routes/*": ["routes/*"]
+            "components/*": ["components/*"],
+            "features/*": ["features/*"],
+            "lib/*": ["lib/*"],
+            "providers/*": ["providers/*"]
+            // "styles/*": ["styles/*"],
+            // "props/*": ["props/*"],
+            // "routes/*": ["routes/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".eslintrc.js", "jest.config.js"],
