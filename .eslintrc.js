@@ -1,5 +1,12 @@
 module.exports = {
-    extends: ['eslint:recommended', 'plugin:react/recommended', 'next/core-web-vitals', 'plugin:@typescript-eslint/recommended', 'prettier', 'plugin:storybook/recommended', 'prettier', 'plugin:storybook/recommended'],
+    extends: [
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'next/core-web-vitals',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:storybook/recommended',
+        'prettier',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         project: './tsconfig.json',
@@ -11,8 +18,5 @@ module.exports = {
     rules: {
         'no-unused-expressions': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        'no-useless-escape': 'off',
-        'no-unused-vars': 'warn',
-        'no-undef': 'warn',
     },
 }
