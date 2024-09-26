@@ -1,15 +1,11 @@
-import { FC } from "react";
-import { Styled{{ pascalCase name }} } from './{{ pascalCase name }}.styles'
+import { FC, ReactNode } from "react";
 
 type {{ pascalCase name }}Props = {
-  text?: string;
-  color?: string;
+  children: ReactNode
 }
 
-export const {{ pascalCase name }}:FC <{{ pascalCase name }}Props> = ({ text, color = '' }) => {
+export const {{ pascalCase name }}:FC <{{ pascalCase name }}Props> = ({ children}) => {
   return (
-    <Styled{{ pascalCase name }} fontColor={color}>
-      {text}
-    </Styled{{ pascalCase name }}>
+      <div>{children}</div>
   );
 };
