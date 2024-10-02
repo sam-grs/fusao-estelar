@@ -20,7 +20,7 @@
             "features/*": ["features/*"],
             "lib/*": ["lib/*"],
             "providers/*": ["providers/*"],
-            // "styles/*": ["styles/*"],
+            "styles/*": ["styles/*"],
             // "props/*": ["props/*"],
             "routes/*": ["routes/*"]
         }

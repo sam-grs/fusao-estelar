@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Box } from '@chakra-ui/react'
-import { Link } from '@chakra-ui/next-js'
+import { Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 import { Routes } from 'routes'
 import { CustomBox } from 'components/box'
@@ -8,12 +9,18 @@ import { headerStyles } from './Header.styles'
 
 export const Header: FC = () => {
     return (
-        <Box sx={headerStyles}>
+        <Box bg="black" color="light_gray" sx={headerStyles}>
             <CustomBox>
-                <Link href={Routes.home}>Logo</Link>
+                <Link as={NextLink} href={Routes.home}>
+                    Logo
+                </Link>
                 <Box>
-                    <Link href={Routes.listagem}>Veja mais</Link>
-                    <Link href={Routes.login}>Entrar</Link>
+                    <Link as={NextLink} href={Routes.listagem}>
+                        Veja mais
+                    </Link>
+                    <Link as={NextLink} href={Routes.login}>
+                        Entrar
+                    </Link>
                 </Box>
             </CustomBox>
         </Box>

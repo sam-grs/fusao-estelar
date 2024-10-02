@@ -3,12 +3,12 @@ import type { Preview } from '@storybook/react'
 import { Global } from '@emotion/react'
 
 import { ChakraProvider } from '../src/providers'
-import { GlobalStyles } from '../src/styles'
+import { GlobalStyles, theme } from '../src/styles'
 
 const preview: Preview = {
     decorators: [
         (Story) => (
-            <ChakraProvider>
+            <ChakraProvider theme={theme}>
                 <Global styles={GlobalStyles} />
                 <Story />
             </ChakraProvider>

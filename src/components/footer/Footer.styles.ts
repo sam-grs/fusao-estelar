@@ -3,8 +3,6 @@ export const footerStyles = {
     width: '100%',
     position: 'fixed',
     bottom: 0,
-    background: '#1A1423',
-    color: '#E4DEE4',
     fontWeight: 'bold',
     '& div': {
         display: 'flex',
