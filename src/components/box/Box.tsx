@@ -1,14 +1,14 @@
 import { FC, ReactNode } from 'react'
-import { Box as BoxUi } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 type BoxProps = {
     children: ReactNode
     sx?: any
 }
 
-export const Box: FC<BoxProps> = ({ children, sx }) => {
+export const CustomBox: FC<BoxProps> = ({ children, sx }) => {
     return (
-        <BoxUi
+        <Box
             maxW={1440}
             m="auto"
             position="relative"
@@ -20,6 +20,6 @@ export const Box: FC<BoxProps> = ({ children, sx }) => {
             sx={sx}
         >
             {children}
-        </BoxUi>
+        </Box>
     )
 }

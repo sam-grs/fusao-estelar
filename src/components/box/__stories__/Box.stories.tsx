@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Box } from '../Box'
+import { CustomBox } from '../Box'
 
-const storyBox: Meta<typeof Box> = {
-    title: 'Components/Box',
-    component: Box,
+const storyCustomBox: Meta<typeof CustomBox> = {
+    title: 'Components/CustomBox',
+    component: CustomBox,
 }
 
-export default storyBox
-type Story = StoryObj<typeof Box>
+export default storyCustomBox
+type Story = StoryObj<typeof CustomBox>
 
-export const StoryBox: Story = {
+export const StoryCustomBox: Story = {
     render: (args) => (
-        <Box sx={{ background: '#A0EB85' }} {...args}>
+        <CustomBox sx={{ background: '#A0EB85' }} {...args}>
             <div style={{ background: 'white', height: 200 }}></div>
-        </Box>
+        </CustomBox>
     ),
 }
