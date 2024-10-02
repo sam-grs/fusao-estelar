@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { {{ pascalCase name }} } from "../{{ pascalCase name }}";
+import { Box } from '@chakra-ui/react'
 
 const story{{ pascalCase name }}: Meta<typeof {{ pascalCase name }}> = {
-  title: "Features/{{ pascalCase name }}",
+  title: "Components/{{ pascalCase name }}",
   component: {{ pascalCase name }},
 };
 
@@ -10,9 +11,10 @@ export default story{{ pascalCase name }};
 type Story = StoryObj<typeof {{ pascalCase name }}>;
 
 export const Story{{ pascalCase name }}: Story = {
+  render: (args) => (),
+
   args: {
-    color: "red",
-    text: 'Criando um parágrafo'
+    name: "your name",
   },
 };
 

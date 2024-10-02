@@ -1,11 +1,15 @@
 import { FC, ReactNode } from "react";
 
 type {{ pascalCase name }}Props = {
-  children: ReactNode
+  children: ReactNode;
+  name: string;
 }
 
-export const {{ pascalCase name }}:FC <{{ pascalCase name }}Props> = ({ children}) => {
+export const {{ pascalCase name }}:FC <{{ pascalCase name }}Props> = ({ children, name }) => {
   return (
-      <div>{children}</div>
+      <div>
+        <input type="text" value={name}>
+        {children}
+      </div>
   );
 };

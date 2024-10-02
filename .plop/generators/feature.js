@@ -22,7 +22,7 @@ module.exports = function (plop) {
             {
                 type: 'add',
                 path: '../src/features/{{ camelCase name }}/__stories__/{{ pascalCase name }}.stories.tsx',
-                templateFile: 'templates/features/feature-stories.hbs',
+                templateFile: 'templates/features/stories.hbs',
             },
             {
                 type: 'add',
