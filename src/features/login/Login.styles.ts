@@ -3,7 +3,7 @@ export const LoginStyles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        width: '100%',
+        maxWidth: '70%',
         height: '100%',
         gap: 4,
     },

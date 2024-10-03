@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Box, Button, Grid } from '@chakra-ui/react'
+import { Box, Button, Grid, Heading, Input } from '@chakra-ui/react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -17,20 +17,20 @@ export const Login: FC = () => {
     const {
         register,
         handleSubmit,
+        control,
         formState: { errors },
     } = useForm<LoginProps>({
         resolver: zodResolver(validationSchema),
         defaultValues: initialValues,
     })
 
-    const onSubmit: SubmitHandler<LoginProps> = (data: LoginProps) => {
+    const onSubmit: SubmitHandler<LoginProps> = async (data: LoginProps) => {
         setIsLoading(true)
         try {
-            const crendentials = signInWithEmailAndPassword(auth, data.email, data.password)
-            console.log(crendentials)
+            await signInWithEmailAndPassword(auth, data.email, data.password)
             Alert({ message: 'Usuário logado!' })
         } catch (error: any) {
-            if (error.message === 'auth/user-not-found') {
+            if (error.message === 'auth/user-not-found' || error.message === 'auth/invalid-credential') {
                 Alert({ message: 'O usuário não existe', type: 'error' })
             }
             if (error.message === 'auth/wrong-password') {
@@ -49,17 +49,22 @@ export const Login: FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CustomBox sx={LoginStyles.box}>
+                    <Heading fontSize="3xl" textAlign="center" color="blue_black" mb={6}>
+                        Login
+                    </Heading>
                     <FormInput
+                        name="email"
+                        control={control}
                         type="email"
                         placeholder="Digite seu email"
                         errors={errors.email}
-                        {...register('email')}
                     />
                     <FormInput
+                        name="password"
+                        control={control}
                         type="password"
                         placeholder="Digite sua senha"
                         errors={errors.password}
-                        {...register('password')}
                     />
                     <Box display="flex" justifyContent="space-between" gap={4} mt={4}>
                         <Button width="100%" type="submit" bg="blue_black" color="light_gray">
