@@ -1,11 +1,7 @@
 import { ReactNode } from 'react'
 import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
 
-import { ChakraProvider } from 'providers'
-import { theme } from 'styles'
-
-// const inter = Inter({ subsets: ['latin'] })
+import { Layout } from './client-layout'
 
 export const metadata: Metadata = {
     title: 'Fusão Estelar',
@@ -17,11 +13,5 @@ export default function RootLayout({
 }: Readonly<{
     children: ReactNode
 }>) {
-    return (
-        <html lang="pt-br">
-            <body>
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
-            </body>
-        </html>
-    )
+    return <Layout>{children}</Layout>
 }

@@ -9,7 +9,7 @@ import { headerStyles } from './Header.styles'
 
 export const Header: FC = () => {
     return (
-        <Box bg="black" color="light_gray" sx={headerStyles}>
+        <Box bg="blue_black" color="light_gray" sx={headerStyles}>
             <CustomBox>
                 <Link as={NextLink} href={Routes.home}>
                     Logo

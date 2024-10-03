@@ -12,8 +12,8 @@ export const CustomBox: FC<BoxProps> = ({ children, sx }) => {
             maxW={1440}
             m="auto"
             position="relative"
-            w="100%"
-            h="100%"
+            width="100%"
+            height="100%"
             boxSize="border-box"
             py={{ base: 8, md: 10 }}
             px={{ base: 4, md: 8 }}

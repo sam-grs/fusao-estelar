@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "target": "es6",
+        "forceConsistentCasingInFileNames": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -7,7 +9,8 @@
         "noEmit": true,
         "esModuleInterop": true,
         "module": "esnext",
-        "moduleResolution": "bundler",
+        // "moduleResolution": "bundler",
+        "moduleResolution": "Node", // mais estável com a vercel
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
@@ -25,6 +28,6 @@
             "routes/*": ["routes/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".eslintrc.js", "jest.config.js"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".eslint.config.mjs", "jest.config.js"],
     "exclude": ["node_modules"]
 }
