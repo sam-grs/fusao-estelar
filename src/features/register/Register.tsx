@@ -17,6 +17,7 @@ export const Register: FC = () => {
     const {
         register,
         handleSubmit,
+        control,
         formState: { errors },
     } = useForm<RegisterProps>({
         resolver: zodResolver(validationSchema),
@@ -50,19 +51,26 @@ export const Register: FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CustomBox sx={boxStyles}>
-                    <FormInput placeholder="Digite seu nome" errors={errors.name} {...register('name')} />
-                    <FormInput placeholder="Digite seu celular" errors={errors.cellPhone} {...register('cellPhone')} />
+                    <FormInput name="name" control={control} placeholder="Digite seu nome" errors={errors.name} />
                     <FormInput
+                        name="cellPhone"
+                        control={control}
+                        placeholder="Digite seu celular"
+                        errors={errors.cellPhone}
+                    />
+                    <FormInput
+                        name="email"
+                        control={control}
                         type="email"
                         placeholder="Digite seu email"
                         errors={errors.email}
-                        {...register('email')}
                     />
                     <FormInput
+                        name="password"
+                        control={control}
                         type="password"
                         placeholder="Digite sua senha"
                         errors={errors.password}
-                        {...register('password')}
                     />
                     <Box display="flex" justifyContent="space-between" gap={4} mt={4}>
                         <Button width="100%" variant="outline" color="blue_black">

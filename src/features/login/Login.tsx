@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Box, Button, Grid, Heading, Input } from '@chakra-ui/react'
+import { Box, Button, Grid, Heading } from '@chakra-ui/react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signInWithEmailAndPassword } from 'firebase/auth'
