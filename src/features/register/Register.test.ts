@@ -46,7 +46,8 @@ const onSubmit = async (values: RegisterProps) => {
     try {
         await createUserWithEmailAndPassword(true, values.email, values.password)
         validationSchema.parse(values)
-        return 'Usuário cadastro com sucesso!'
+
+        return 'Usuário cadastrado com sucesso!'
     } catch (error: any) {
         if (error instanceof ZodError) {
             return error.format()
@@ -59,7 +60,7 @@ const onSubmit = async (values: RegisterProps) => {
 
 describe('Verificação do Registro', () => {
     it('Criando o usuário', () => {
-        expect(onSubmit(newUser)).toEqual('Usuário cadastro com sucesso!')
+        expect(onSubmit(newUser)).toEqual('Usuário cadastrado com sucesso!')
     })
 
     it('Retornando os erros de validação de formulário', () => {
