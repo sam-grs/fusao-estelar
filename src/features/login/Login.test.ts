@@ -22,8 +22,8 @@ const invalidUser: LoginProps = {
 }
 
 function signInWithEmailAndPassword(auth: boolean, email: string, password: string) {
-    if (email !== user.email) throw { message: 'auth/user-not-found' }
-    if (password !== user.password) throw { message: 'auth/wrong-password' }
+    if (email !== user.email || !invalidUser) throw new Error('auth/user-not-found')
+    if (password !== user.password || !invalidUser) throw new Error('auth/wrong-password')
     else {
         const data = {
             auth: auth,
@@ -37,40 +37,44 @@ function signInWithEmailAndPassword(auth: boolean, email: string, password: stri
 
 const onSubmit = async (values: LoginProps) => {
     try {
+        await validationSchema.parse(values)
         await signInWithEmailAndPassword(true, values.email, values.password)
-        validationSchema.parse(values)
 
         return 'Usuário logado com sucesso!'
     } catch (error: any) {
         if (error instanceof ZodError) {
-            return error.format()
+            const formattedErrors: any = error.format()
+            throw {
+                email: formattedErrors.email,
+                password: formattedErrors.password,
+            }
         }
         if (error.message === 'auth/user-not-found') {
-            return 'O usuário não existe.'
+            throw new Error('O usuário não existe.')
         }
         if (error.message === 'auth/wrong-password') {
-            return 'Sua senha está incorreta.'
+            throw new Error('Sua senha está incorreta.')
         }
     }
 }
 
 describe('Verificação do Login', () => {
-    it('Quando o usuário existe', () => {
-        expect(onSubmit(user)).toEqual('Usuário logado com sucesso!')
+    it('Quando o usuário existe', async () => {
+        await expect(onSubmit(user)).resolves.toEqual('Usuário logado com sucesso!')
     })
 
-    it('Quando o usuário não existe', () => {
-        expect(onSubmit(userNotRegistered)).toEqual('O usuário não existe.')
+    it('Quando o usuário não existe', async () => {
+        await expect(onSubmit(userNotRegistered)).rejects.toThrow('O usuário não existe.')
     })
 
-    it('Quando a senha está incorreta', () => {
-        expect({ ...user, password: '12345668' }).toEqual('Sua senha está incorreta.')
+    it('Quando a senha está incorreta', async () => {
+        await expect(onSubmit({ ...user, password: '12345668' })).rejects.toThrow('Sua senha está incorreta.')
     })
 
-    it('Retornando os erros da validação de formulário', () => {
-        expect({
-            email: 'Preencha o campo email corretamente',
-            password: 'Mínimo de 8 caracteres',
-        }).toEqual(onSubmit(invalidUser))
+    it('Retornando os erros da validação de formulário', async () => {
+        await expect(onSubmit(invalidUser)).rejects.toEqual({
+            email: { _errors: ['Preencha o campo de email corretamente'] },
+            password: { _errors: ['Mínimo de 8 caracteres'] },
+        })
     })
 })
