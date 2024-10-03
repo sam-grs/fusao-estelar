@@ -27,6 +27,6 @@
             "routes/*": ["routes/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".eslintrc.js", "jest.config.js"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".eslint.config.mjs", "jest.config.js"],
     "exclude": ["node_modules"]
 }
