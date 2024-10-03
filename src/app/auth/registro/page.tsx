@@ -1,9 +1,6 @@
+'use client'
+import { Register } from 'features'
 
-
-export default function Register() {
-    return (
-        <>
-            <h1>Registro</h1>
-        </>
-    )
+export default function RegisterPage() {
+    return <Register />
 }
