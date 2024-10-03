@@ -50,29 +50,29 @@ const onSubmit = async (values: LoginProps) => {
             }
         }
         if (error.message === 'auth/user-not-found') {
-            throw new Error('O usuário não existe.')
+            throw 'O usuário não existe.'
         }
         if (error.message === 'auth/wrong-password') {
-            throw new Error('Sua senha está incorreta.')
+            throw 'Sua senha está incorreta.'
         }
     }
 }
 
 describe('Verificação do Login', () => {
-    it('Quando o usuário existe', async () => {
-        await expect(onSubmit(user)).resolves.toEqual('Usuário logado com sucesso!')
+    it('Quando o usuário existe', () => {
+        expect(onSubmit(user)).resolves.toEqual('Usuário logado com sucesso!')
     })
 
-    it('Quando o usuário não existe', async () => {
-        await expect(onSubmit(userNotRegistered)).rejects.toThrow('O usuário não existe.')
+    it('Quando o usuário não existe', () => {
+        expect(onSubmit(userNotRegistered)).rejects.toEqual('O usuário não existe.')
     })
 
-    it('Quando a senha está incorreta', async () => {
-        await expect(onSubmit({ ...user, password: '12345668' })).rejects.toThrow('Sua senha está incorreta.')
+    it('Quando a senha está incorreta', () => {
+        expect(onSubmit({ ...user, password: '12345668' })).rejects.toEqual('Sua senha está incorreta.')
     })
 
-    it('Retornando os erros da validação de formulário', async () => {
-        await expect(onSubmit(invalidUser)).rejects.toEqual({
+    it('Retornando os erros da validação de formulário', () => {
+        expect(onSubmit(invalidUser)).rejects.toEqual({
             email: { _errors: ['Preencha o campo de email corretamente'] },
             password: { _errors: ['Mínimo de 8 caracteres'] },
         })
