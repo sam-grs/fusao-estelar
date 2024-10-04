@@ -18,7 +18,6 @@ export type RegisterProps = z.infer<typeof validationSchema>
 export const Register: FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const {
-        register,
         handleSubmit,
         control,
         formState: { errors },
@@ -34,13 +33,13 @@ export const Register: FC = () => {
             console.log(crendentials)
             Alert({ message: 'Seus dados foram cadastrados!' })
         } catch (error: any) {
-            if (error.message === 'auth/email-already-exists') {
+            if (error.code === 'auth/email-already-exists') {
                 Alert({ message: 'Email já cadastrado', type: 'error' })
             }
 
-            // if (error.message === 'auth/phone-number-already-exists') {
-            //     Alert({ message: 'O número de telefone já foi cadastrado.', type: 'error' })
-            // }
+            if (error.code === 'auth/phone-number-already-exists') {
+                Alert({ message: 'O número de telefone já foi cadastrado.', type: 'error' })
+            }
 
             console.error(error)
         } finally {
