@@ -9,10 +9,13 @@ export const initialValues = {
 
 export const validationSchema = z.object({
     name: z.string().min(1, { message: 'Campo obrigatório' }).max(50, { message: 'Máximo de 50 caracteres' }),
-    cellPhone: z.string().min(1, { message: 'Campo obrigatório' }).regex(new RegExp('^\\(\\d{2}\\)\\s\\d{5}-\\d{4}$'), {
+    cellPhone: z.string().min(1, { message: 'Campo obrigatório' }).regex(new RegExp('\\(\\d{2}\\) \\d{4}-\\d{4}'), {
         message: 'Telefone inválido',
     }),
-    email: z.string().email({ message: 'Preencha o campo de email corretamente' }),
+    email: z
+        .string()
+        .min(1, { message: 'Campo obrigatório' })
+        .email({ message: 'Preencha o campo de email corretamente' }),
     password: z
         .string()
         .min(1, { message: 'Campo obrigatório' })

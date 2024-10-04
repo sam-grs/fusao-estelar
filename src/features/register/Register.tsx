@@ -1,21 +1,23 @@
 import { FC, useState } from 'react'
-import { Box, Button, Grid } from '@chakra-ui/react'
+import { Box, Button, Grid, Heading } from '@chakra-ui/react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { z } from 'zod'
+import { Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 import { Alert, CustomBox, FormInput } from 'components'
 import { validationSchema, initialValues } from './Register.schema'
 import { boxStyles } from './Register.styles'
 import { auth } from 'lib'
+import { Routes } from 'routes'
 
 export type RegisterProps = z.infer<typeof validationSchema>
 
 export const Register: FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const {
-        register,
         handleSubmit,
         control,
         formState: { errors },
@@ -31,13 +33,13 @@ export const Register: FC = () => {
             console.log(crendentials)
             Alert({ message: 'Seus dados foram cadastrados!' })
         } catch (error: any) {
-            if (error.message === 'auth/email-already-exists') {
-                Alert({ message: 'O usuário já existe.', type: 'error' })
+            if (error.code === 'auth/email-already-exists') {
+                Alert({ message: 'Email já cadastrado', type: 'error' })
             }
 
-            // if (error.message === 'auth/phone-number-already-exists') {
-            //     Alert({ message: 'O número de telefone já foi cadastrado.', type: 'error' })
-            // }
+            if (error.code === 'auth/phone-number-already-exists') {
+                Alert({ message: 'O número de telefone já foi cadastrado.', type: 'error' })
+            }
 
             console.error(error)
         } finally {
@@ -51,6 +53,9 @@ export const Register: FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <CustomBox sx={boxStyles}>
+                    <Heading fontSize="3xl" textAlign="center" color="blue_black" mb={6}>
+                        Registro
+                    </Heading>
                     <FormInput name="name" control={control} placeholder="Digite seu nome" errors={errors.name} />
                     <FormInput
                         name="cellPhone"
@@ -73,10 +78,13 @@ export const Register: FC = () => {
                         errors={errors.password}
                     />
                     <Box display="flex" justifyContent="space-between" gap={4} mt={4}>
-                        <Button width="100%" variant="outline" color="blue_black">
-                            Voltar
-                        </Button>
-                        <Button width="100%" type="submit" bg="blue_black" color="light_gray">
+                        <Link w="100%" as={NextLink} href={Routes.login}>
+                            <Button w="100%" variant="outline" color="blue_black">
+                                Voltar
+                            </Button>
+                        </Link>
+
+                        <Button w="100%" type="submit" bg="blue_black" color="light_gray">
                             Enviar
                         </Button>
                     </Box>

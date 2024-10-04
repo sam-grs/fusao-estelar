@@ -15,7 +15,6 @@ export type LoginProps = z.infer<typeof validationSchema>
 export const Login: FC = () => {
     const [isLoading, setIsLoading] = useState(false)
     const {
-        register,
         handleSubmit,
         control,
         formState: { errors },
@@ -30,11 +29,9 @@ export const Login: FC = () => {
             await signInWithEmailAndPassword(auth, data.email, data.password)
             Alert({ message: 'Usuário logado!' })
         } catch (error: any) {
-            if (error.message === 'auth/user-not-found' || error.message === 'auth/invalid-credential') {
-                Alert({ message: 'O usuário não existe', type: 'error' })
-            }
-            if (error.message === 'auth/wrong-password') {
-                Alert({ message: 'Sua senha está incorreta.', type: 'error' })
+            console.log('error ->', error.code)
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                Alert({ message: 'O email ou senha estão incorretos', type: 'error' })
             }
 
             console.error(error)

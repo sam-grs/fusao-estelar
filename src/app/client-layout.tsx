@@ -9,6 +9,7 @@ import { theme } from 'styles'
 import { Footer, Header } from 'components'
 import { Routes } from 'routes'
 
+// ver como otimizar, porque o site está carregando, quando na verdade não deveria
 export function Layout({
     children,
 }: Readonly<{
